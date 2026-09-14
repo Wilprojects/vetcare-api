@@ -53,6 +53,7 @@ Este documento define las reglas que deben cumplirse independientemente del endp
 | `RN-PET-10` | La eliminación de una mascota es lógica: `IsActive = false`. |
 | `RN-PET-11` | La solicitud de una mascota inexistente o ajena devuelve `404 Not Found`. |
 | `RN-PET-12` | Desactivar una mascota no elimina sus citas históricas. |
+| `RN-PET-13` | `PetSpecies.Unknown` no se acepta al crear o actualizar una mascota. |
 
 ## 5. Reglas de servicios veterinarios
 

@@ -7,7 +7,24 @@ servicios y citas veterinarias.
 
 En desarrollo.
 
-Fase actual: modelo de dominio completado.
+Fase actual: persistencia con Entity Framework Core,
+SQL Server e Identity completada.
+
+### Aplicar migraciones
+
+```bash
+dotnet ef database update \
+  --project src/VetCare.Infrastructure \
+  --startup-project src/VetCare.Api
+```
+
+### Ejecutar datos iniciales
+
+```bash
+dotnet run \
+  --project src/VetCare.Api \
+  -- --SeedDatabase=true
+```
 
 ## Modelo de dominio
 
@@ -47,6 +64,13 @@ La solución utiliza una arquitectura por capas:
 - `VetCare.Infrastructure`: persistencia, Identity e infraestructura.
 - `VetCare.UnitTests`: pruebas unitarias.
 - `VetCare.IntegrationTests`: pruebas de integración.
+
+## Base de datos local
+
+VetCare utiliza SQL Server.
+
+La cadena de conexión y las credenciales del administrador se
+configuran mediante ASP.NET Core User Secrets.
 
 ## Documentación
 

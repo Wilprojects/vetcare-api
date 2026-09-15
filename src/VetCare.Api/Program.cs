@@ -1,19 +1,31 @@
+using VetCare.Infrastructure;
+using VetCare.Infrastructure.Persistence.Seed;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddInfrastructure(
+    builder.Configuration);
+
+var seedDatabase =
+    builder.Configuration.GetValue<bool>(
+        "SeedDatabase");
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+if (seedDatabase)
+{
+    await app.Services.SeedDatabaseAsync();
+    return;
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
 
 app.MapGet("/", () => Results.Ok(new
 {

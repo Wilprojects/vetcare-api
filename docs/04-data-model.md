@@ -343,14 +343,28 @@ DbSet<VeterinaryService> VeterinaryServices
 DbSet<Appointment> Appointments
 ```
 
-## 15. Migraciones
+## 15. Estrategia de persistencia
+
+- Proveedor: SQL Server.
+- ORM: Entity Framework Core 10.
+- Contexto: `VetCareDbContext`.
+- Claves principales: `Guid`.
+- Precio: `decimal(10,2)`.
+- Peso: `decimal(5,2)`.
+- Fecha de nacimiento: `date`.
+- Fechas y horas: `datetime2`, interpretadas como UTC.
+- Los enums se almacenan como texto.
+- Las eliminaciones en cascada están deshabilitadas para los
+  datos del negocio.
+
+## 16. Migraciones
 
 - Las migraciones pertenecerán a `VetCare.Infrastructure`.
 - SQL Server será el proveedor oficial de las migraciones.
 - No se mantendrán migraciones paralelas para SQLite.
 - La creación o actualización automática de esquema en producción se evaluará con cuidado; el despliegue debe conservar trazabilidad.
 
-## 16. Consideraciones futuras
+## 17. Consideraciones futuras
 
 No forman parte de VetCare v1:
 
@@ -362,7 +376,7 @@ No forman parte de VetCare v1:
 - Control de concurrencia mediante `rowversion` en todos los agregados.
 - Auditoría histórica completa.
 
-## 17. Referencias relacionadas
+## 18. Referencias relacionadas
 
 - [Reglas de negocio](03-business-rules.md)
 - [Contrato de API](05-api-contract.md)

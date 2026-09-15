@@ -7,7 +7,21 @@ servicios y citas veterinarias.
 
 En desarrollo.
 
-Fase actual: creación de la solución y estructura inicial por capas.
+Fase actual: modelo de dominio completado.
+
+## Modelo de dominio
+
+La versión inicial contiene las siguientes entidades:
+
+- `Pet`
+- `VeterinaryService`
+- `Appointment`
+
+Y las enumeraciones:
+
+- `PetSpecies`
+- `PetSex`
+- `AppointmentStatus`
 
 ## Tecnologías previstas
 

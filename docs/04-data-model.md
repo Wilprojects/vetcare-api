@@ -125,6 +125,7 @@ Representa una mascota registrada por un cliente.
 ### 5.1 Enumeración `PetSpecies`
 
 ```text
+Unknown
 Dog
 Cat
 Bird

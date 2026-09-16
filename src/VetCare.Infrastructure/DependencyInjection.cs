@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using VetCare.Application.Authentication;
 using VetCare.Infrastructure.Authentication;
 using VetCare.Infrastructure.Persistence;
 using VetCare.Infrastructure.Persistence.Seed;
@@ -25,10 +28,7 @@ public static class DependencyInjection
                 connectionString,
                 sqlServerOptions =>
                 {
-                    sqlServerOptions.EnableRetryOnFailure(
-                        maxRetryCount: 5,
-                        maxRetryDelay: TimeSpan.FromSeconds(10),
-                        errorNumbersToAdd: null);
+                    sqlServerOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(10), errorNumbersToAdd: null);
                 });
         });
 
@@ -46,19 +46,54 @@ public static class DependencyInjection
 
                 options.Lockout.AllowedForNewUsers = true;
                 options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.DefaultLockoutTimeSpan =
-                    TimeSpan.FromMinutes(5);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
             .AddRoles<IdentityRole<Guid>>()
+            .AddSignInManager()
             .AddEntityFrameworkStores<VetCareDbContext>();
 
-        services.AddSingleton<TimeProvider>(
-            TimeProvider.System);
+
+        var jwtOptions = JwtOptions.FromConfiguration(configuration);
+
+        services.AddSingleton(jwtOptions);
+
+        services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.MapInboundClaims = false;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    RequireExpirationTime = true,
+
+                    ValidIssuer = jwtOptions.Issuer,
+
+                    ValidAudience = jwtOptions.Audience,
+
+                    IssuerSigningKey = new SymmetricSecurityKey(jwtOptions.SigningKeyBytes),
+
+                    NameClaimType = "email",
+                    RoleClaimType = "role",
+
+                    ClockSkew = TimeSpan.FromMinutes(1)
+                };
+            });
+
+
+        services.AddSingleton<TimeProvider>(TimeProvider.System);
 
         services.AddScoped<DatabaseSeeder>();
+
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
+        services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }

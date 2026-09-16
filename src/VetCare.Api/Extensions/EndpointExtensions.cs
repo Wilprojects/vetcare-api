@@ -1,4 +1,5 @@
 using VetCare.Api.Contracts.System;
+using VetCare.Api.Endpoints;
 
 namespace VetCare.Api.Extensions;
 
@@ -8,13 +9,14 @@ public static class EndpointExtensions
     {
         app.MapGet(
             "/",
-            () => TypedResults.Ok(
-                new ApiInfoResponse(Name: "VetCare API", Version: "v1", Status: "Running", Documentation: "/swagger", Health: "/health")))
+            () => TypedResults.Ok(new ApiInfoResponse(Name: "VetCare API", Version: "v1", Status: "Running", Documentation: "/swagger", Health: "/health")))
             .WithName("GetApiInformation")
             .WithTags("System")
             .Produces<ApiInfoResponse>(StatusCodes.Status200OK);
 
         app.MapVetCareHealthChecks();
+
+        app.MapAuthEndpoints();
 
         return app;
     }

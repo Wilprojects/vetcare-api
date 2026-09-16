@@ -2,6 +2,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using VetCare.Api.ExceptionHandling;
+using VetCare.Api.OpenApi;
+using VetCare.Api.Security;
+using VetCare.Application.Common.Security;
 using VetCare.Infrastructure.Persistence;
 
 namespace VetCare.Api.Extensions;
@@ -17,6 +20,11 @@ public static class ApiServiceExtensions
         AddCorsConfiguration(services, configuration);
         AddOpenApiConfiguration(services);
         AddHealthChecks(services);
+
+        AddAuthorizationConfiguration(services);
+
+        AddCurrentUser(services);
+
 
         return services;
     }
@@ -73,6 +81,11 @@ public static class ApiServiceExtensions
                         document.Info.Description = "API REST desarrollada con .NET 10 " + "para la gestión de mascotas, " + "servicios y citas veterinarias.";
                         return Task.CompletedTask;
                     });
+
+                options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+
+                options.AddOperationTransformer<AuthOperationTransformer>();
+
             });
     }
 
@@ -80,5 +93,29 @@ public static class ApiServiceExtensions
     {
         services.AddHealthChecks()
             .AddDbContextCheck<VetCareDbContext>(name: "database", failureStatus: HealthStatus.Unhealthy, tags: ["ready"]);
+    }
+
+    private static void AddAuthorizationConfiguration(IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(PolicyNames.AuthenticatedUser, policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                });
+
+            options.AddPolicy(PolicyNames.AdminOnly, policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireRole(RoleNames.Admin);
+                });
+        });
+    }
+
+    private static void AddCurrentUser(IServiceCollection services)
+    {
+        services.AddHttpContextAccessor();
+
+        services.AddScoped<ICurrentUser, CurrentUser>();
     }
 }

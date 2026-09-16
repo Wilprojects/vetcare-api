@@ -72,6 +72,16 @@ VetCare utiliza SQL Server.
 La cadena de conexión y las credenciales del administrador se
 configuran mediante ASP.NET Core User Secrets.
 
+### Seguridad
+
+VetCare utiliza:
+
+- ASP.NET Core Identity para usuarios y contraseñas.
+- JWT Bearer para autenticación de la API.
+- Roles `Customer` y `Admin`.
+- Políticas de autorización.
+- User Secrets para la clave JWT.
+
 ## Documentación
 
 La documentación funcional y técnica se encuentra en la carpeta

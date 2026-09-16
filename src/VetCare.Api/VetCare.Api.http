@@ -1,0 +1,51 @@
+@baseUrl = https://localhost:7001
+@token = PASTE_JWT_HERE
+
+### API information
+
+GET {{baseUrl}}/
+Accept: application/json
+
+
+### Health
+
+GET {{baseUrl}}/health
+Accept: application/json
+
+
+### Register customer
+
+POST {{baseUrl}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Carlos",
+  "lastName": "Ramirez",
+  "email": "carlos@vetcare.local",
+  "phoneNumber": "+51987654321",
+  "password": "CHANGE_THIS_LOCAL_PASSWORD"
+}
+
+
+### Login
+
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos@vetcare.local",
+  "password": "CHANGE_THIS_LOCAL_PASSWORD"
+}
+
+
+### Current user - without token
+
+GET {{baseUrl}}/api/v1/auth/me
+Accept: application/json
+
+
+### Current user - authenticated
+
+GET {{baseUrl}}/api/v1/auth/me
+Accept: application/json
+Authorization: Bearer {{token}}

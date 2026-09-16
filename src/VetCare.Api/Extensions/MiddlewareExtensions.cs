@@ -8,6 +8,8 @@ public static class MiddlewareExtensions
         app.UseStatusCodePages();
         app.UseHttpsRedirection();
         app.UseCors(CorsPolicyNames.Frontend);
+        app.UseAuthentication();
+        app.UseAuthorization();
         ConfigureOpenApi(app);
 
         return app;

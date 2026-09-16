@@ -8,9 +8,15 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
+        if (exception is AppValidationException validationException)
+        {
+            return await HandleValidationExceptionAsync(httpContext, validationException);
+        }
+
         var error = MapException(exception);
 
-        if (error.StatusCode >= StatusCodes.Status500InternalServerError)
+        if (error.StatusCode >=
+            StatusCodes.Status500InternalServerError)
         {
             logger.LogError(exception, "Unhandled exception. TraceId: {TraceId}", httpContext.TraceIdentifier);
         }
@@ -43,10 +49,45 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
             });
     }
 
+    private async ValueTask<bool> HandleValidationExceptionAsync(HttpContext httpContext, AppValidationException exception)
+    {
+        logger.LogWarning("Validation failed. ErrorCode: {ErrorCode}. TraceId: {TraceId}", exception.Code, httpContext.TraceIdentifier);
+
+        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+        var problemDetails = new HttpValidationProblemDetails(exception.Errors)
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Title = "Error de validación",
+            Detail = exception.Message,
+            Type = "https://vetcare/errors/validation",
+            Instance = httpContext.Request.Path
+        };
+
+        problemDetails.Extensions["errorCode"] = exception.Code;
+
+        problemDetails.Extensions["traceId"] = httpContext.TraceIdentifier;
+
+        return await problemDetailsService.TryWriteAsync(
+            new ProblemDetailsContext
+            {
+                HttpContext = httpContext,
+                ProblemDetails = problemDetails,
+                Exception = exception
+            });
+    }
+
     private static ErrorDetails MapException(Exception exception)
     {
         return exception switch
         {
+            UnauthorizedException ex => new ErrorDetails(
+                StatusCodes.Status401Unauthorized,
+                "No autorizado",
+                ex.Message,
+                ex.Code,
+                "https://vetcare/errors/unauthorized"),
+
             NotFoundException ex => new ErrorDetails(
                 StatusCodes.Status404NotFound,
                 "Recurso no encontrado",
@@ -84,5 +125,11 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
         };
     }
 
-    private sealed record ErrorDetails(int StatusCode, string Title, string Detail, string ErrorCode, string Type);
+    private sealed record ErrorDetails(
+        int StatusCode,
+        string Title,
+        string Detail,
+        string ErrorCode,
+        string Type
+    );
 }

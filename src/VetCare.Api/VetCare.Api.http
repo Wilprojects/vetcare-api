@@ -49,3 +49,76 @@ Accept: application/json
 GET {{baseUrl}}/api/v1/auth/me
 Accept: application/json
 Authorization: Bearer {{token}}
+
+
+### =========================================================
+### PETS
+### =========================================================
+
+@petId = REPLACE_WITH_PET_ID
+
+
+### Get pets
+
+GET {{baseUrl}}/api/v1/pets
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Get pets - pagination, filter and sorting
+
+GET {{baseUrl}}/api/v1/pets?pageNumber=1&pageSize=10&species=Dog&sortBy=name&sortDirection=asc
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Get pets - include inactive
+
+GET {{baseUrl}}/api/v1/pets?pageNumber=1&pageSize=10&includeInactive=true
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Get pet by id
+
+GET {{baseUrl}}/api/v1/pets/{{petId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Create pet
+
+POST {{baseUrl}}/api/v1/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Luna",
+  "species": "Dog",
+  "breed": "Labrador",
+  "sex": "Female",
+  "birthDate": "2022-05-10",
+  "weightKg": 24.50
+}
+
+
+### Update pet
+
+PUT {{baseUrl}}/api/v1/pets/{{petId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Luna",
+  "species": "Dog",
+  "breed": "Labrador Retriever",
+  "sex": "Female",
+  "birthDate": "2022-05-10",
+  "weightKg": 25.10
+}
+
+
+### Deactivate pet
+
+DELETE {{baseUrl}}/api/v1/pets/{{petId}}
+Authorization: Bearer {{token}}

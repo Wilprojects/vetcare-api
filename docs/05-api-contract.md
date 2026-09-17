@@ -144,15 +144,41 @@ Devuelve `200 OK` con los datos públicos del usuario autenticado.
 
 ## 6. Endpoints de mascotas
 
-| Método | Ruta | Acceso | Resultado principal |
-|---|---|---|---|
-| `GET` | `/api/v1/pets` | Customer | `200 OK` |
-| `GET` | `/api/v1/pets/{id}` | Propietario | `200 OK` |
-| `POST` | `/api/v1/pets` | Customer | `201 Created` |
-| `PUT` | `/api/v1/pets/{id}` | Propietario | `200 OK` |
-| `DELETE` | `/api/v1/pets/{id}` | Propietario | `204 No Content` |
+Todos los endpoints requieren un JWT válido y el rol `Customer`.
 
-Este recurso cumple el CRUD completo requerido. `DELETE` realiza una desactivación lógica.
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/v1/pets` | Lista las mascotas del usuario autenticado |
+| GET | `/api/v1/pets/{id}` | Obtiene una mascota propia |
+| POST | `/api/v1/pets` | Crea una mascota |
+| PUT | `/api/v1/pets/{id}` | Actualiza una mascota activa |
+| DELETE | `/api/v1/pets/{id}` | Desactiva lógicamente una mascota |
+
+### Parámetros de listado
+
+| Parámetro | Default | Descripción |
+|---|---:|---|
+| `pageNumber` | `1` | Número de página |
+| `pageSize` | `10` | Registros por página; máximo 100 |
+| `search` | - | Busca por nombre o raza |
+| `species` | - | Filtra por especie |
+| `includeInactive` | `false` | Incluye mascotas inactivas |
+| `sortBy` | `name` | `name`, `createdAt`, `birthDate` |
+| `sortDirection` | `asc` | `asc` o `desc` |
+
+### Crear mascota
+
+El request no acepta `ownerId`.
+
+```json
+{
+  "name": "Luna",
+  "species": "Dog",
+  "breed": "Labrador",
+  "sex": "Female",
+  "birthDate": "2022-05-10",
+  "weightKg": 24.50
+}
 
 ### 6.1 Listar mascotas
 

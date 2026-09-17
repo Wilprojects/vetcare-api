@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using VetCare.Application.Common.Persistence;
 using VetCare.Domain.Entities;
 using VetCare.Infrastructure.Authentication;
 using VetCare.Infrastructure.Persistence.Converters;
 
 namespace VetCare.Infrastructure.Persistence;
 
-public sealed class VetCareDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+public sealed class VetCareDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IUnitOfWork
 {
     public VetCareDbContext(DbContextOptions<VetCareDbContext> options) : base(options)
     {

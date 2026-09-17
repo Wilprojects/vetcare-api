@@ -158,16 +158,16 @@ Una funcionalidad se considera terminada cuando cumple todos los puntos aplicabl
 ### 3.2 Mascotas
 
 ```text
-[ ] GET listado implementado y paginado.
-[ ] GET por ID implementado.
-[ ] POST implementado.
-[ ] PUT implementado.
-[ ] DELETE lógico implementado.
-[ ] Búsqueda, filtros y ordenamiento funcionan.
-[ ] Un cliente solo accede a sus mascotas.
-[ ] No se desactiva una mascota con citas futuras activas.
-[ ] Todos los resultados y errores están documentados.
-[ ] Pruebas unitarias e integración pasan.
+[x] GET listado implementado y paginado.
+[x] GET por ID implementado.
+[x] POST implementado.
+[x] PUT implementado.
+[x] DELETE lógico implementado.
+[x] Búsqueda, filtros y ordenamiento funcionan.
+[x] Un cliente solo accede a sus mascotas.
+[x] No se desactiva una mascota con citas futuras activas.
+[x] Todos los resultados y errores están documentados.
+[x] Pruebas unitarias e integración pasan.
 ```
 
 ### 3.3 Servicios veterinarios

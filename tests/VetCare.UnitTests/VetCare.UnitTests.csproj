@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\VetCare.Application\VetCare.Application.csproj" />
     <ProjectReference Include="..\..\src\VetCare.Domain\VetCare.Domain.csproj" />
   </ItemGroup>
 

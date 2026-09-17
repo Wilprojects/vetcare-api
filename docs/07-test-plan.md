@@ -52,6 +52,16 @@ Dependencias sustituibles:
 - Generador de token, cuando corresponda.
 - Logger, mediante `NullLogger<T>` o un doble de prueba.
 
+### PetService
+
+Casos cubiertos:
+
+- La creación utiliza el usuario autenticado como propietario.
+- Un usuario no puede consultar mascotas de otro propietario.
+- No se puede desactivar una mascota con citas futuras activas.
+- Una mascota sin citas futuras puede desactivarse correctamente.
+- `pageSize` mayor a 100 produce error de validación.
+
 ### 3.2 Pruebas de integración
 
 Inician VetCare con `WebApplicationFactory<Program>` y envían peticiones mediante `HttpClient`.

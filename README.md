@@ -7,8 +7,7 @@ servicios y citas veterinarias.
 
 En desarrollo.
 
-Fase actual: persistencia con Entity Framework Core,
-SQL Server e Identity completada.
+Fase actual: CRUD de mascotas completado.
 
 ### Aplicar migraciones
 
@@ -81,6 +80,20 @@ VetCare utiliza:
 - Roles `Customer` y `Admin`.
 - Políticas de autorización.
 - User Secrets para la clave JWT.
+
+## Endpoints
+
+### Mascotas
+
+| Método | Endpoint |
+|---|---|
+| GET | `/api/v1/pets` |
+| GET | `/api/v1/pets/{id}` |
+| POST | `/api/v1/pets` |
+| PUT | `/api/v1/pets/{id}` |
+| DELETE | `/api/v1/pets/{id}` |
+
+Los endpoints requieren autenticación JWT y rol `Customer`.
 
 ## Documentación
 

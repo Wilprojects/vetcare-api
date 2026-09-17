@@ -18,6 +18,8 @@ public static class EndpointExtensions
 
         app.MapAuthEndpoints();
 
+        app.MapPetEndpoints();
+
         return app;
     }
 }

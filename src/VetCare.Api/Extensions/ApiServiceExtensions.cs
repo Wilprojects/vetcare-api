@@ -1,10 +1,12 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.OpenApi;
 using VetCare.Api.ExceptionHandling;
 using VetCare.Api.OpenApi;
 using VetCare.Api.Security;
 using VetCare.Application.Common.Security;
+using VetCare.Application.Pets;
 using VetCare.Infrastructure.Persistence;
 
 namespace VetCare.Api.Extensions;
@@ -16,6 +18,7 @@ public static class ApiServiceExtensions
         AddProblemDetails(services);
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddValidation();
+        services.AddScoped<IPetService, PetService>();
         AddJsonConfiguration(services);
         AddCorsConfiguration(services, configuration);
         AddOpenApiConfiguration(services);
@@ -74,6 +77,9 @@ public static class ApiServiceExtensions
             "v1",
             options =>
             {
+
+                options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
+
                 options.AddDocumentTransformer((document, _, _) =>
                     {
                         document.Info.Title = "VetCare API";
@@ -99,9 +105,12 @@ public static class ApiServiceExtensions
     {
         services.AddAuthorization(options =>
         {
-            options.AddPolicy(PolicyNames.AuthenticatedUser, policy =>
+            options.AddPolicy(PolicyNames.AuthenticatedUser, policy => { policy.RequireAuthenticatedUser(); });
+
+            options.AddPolicy(PolicyNames.CustomerOnly, policy =>
                 {
                     policy.RequireAuthenticatedUser();
+                    policy.RequireRole(RoleNames.Customer);
                 });
 
             options.AddPolicy(PolicyNames.AdminOnly, policy =>

@@ -40,6 +40,28 @@ Este documento enumera los requisitos verificables de VetCare v1. Cada requisito
 | `RF-PET-08` | El listado debe permitir búsqueda, filtros y ordenamiento. | Must | Los parámetros admitidos se aplican sin construir SQL dinámico inseguro. |
 | `RF-PET-09` | Una mascota inactiva debe conservarse para fines históricos. | Must | El registro permanece en la base de datos. |
 
+
+### Estado de implementación
+
+La gestión de mascotas se encuentra implementada.
+
+El usuario con rol `Customer` puede:
+
+- Listar sus mascotas con paginación.
+- Buscar mascotas por nombre o raza.
+- Filtrar mascotas por especie.
+- Ordenar por nombre, fecha de creación o fecha de nacimiento.
+- Consultar una mascota propia.
+- Crear una mascota.
+- Actualizar una mascota activa.
+- Desactivar lógicamente una mascota.
+
+El `OwnerId` se obtiene exclusivamente del JWT y nunca es recibido
+desde el cliente.
+
+Las mascotas pertenecientes a otros usuarios se responden como
+`404 Not Found`.
+
 ## 5. Requisitos funcionales de servicios veterinarios
 
 | ID | Requisito | Prioridad | Criterio de aceptación resumido |

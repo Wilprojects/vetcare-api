@@ -54,6 +54,13 @@ Este documento define las reglas que deben cumplirse independientemente del endp
 | `RN-PET-11` | La solicitud de una mascota inexistente o ajena devuelve `404 Not Found`. |
 | `RN-PET-12` | Desactivar una mascota no elimina sus citas históricas. |
 | `RN-PET-13` | `PetSpecies.Unknown` no se acepta al crear o actualizar una mascota. |
+| `RN-PET-14` | El `OwnerId` de una mascota siempre se obtiene del usuario autenticado mediante el JWT. Nunca se acepta desde el request.
+| `RN-PET-15` | Un cliente solo puede consultar, actualizar o desactivar mascotas que le pertenecen.
+| `RN-PET-16` | El acceso a una mascota perteneciente a otro usuario devuelve `404 Not Found` para evitar revelar la existencia del recurso.
+| `RN-PET-17` | Las mascotas inactivas no aparecen en el listado predeterminado. Pueden incluirse mediante `includeInactive=true`.
+| `RN-PET-18` | Una mascota inactiva no puede modificarse.
+| `RN-PET-19` | Una mascota no puede desactivarse si tiene una cita futura con estado `Pending` o `Confirmed`.
+| `RN-PET-20` | El listado de mascotas utiliza `pageNumber=1` y `pageSize=10` por defecto, con un máximo de 100 elementos por página.
 
 ## 5. Reglas de servicios veterinarios
 

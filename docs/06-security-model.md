@@ -123,6 +123,31 @@ Admin
 
 Los grupos de Minimal APIs aplicarán `.RequireAuthorization()` o `.RequireAuthorization("AdminOnly")` según corresponda.
 
+### Política CustomerOnly
+
+`CustomerOnly` requiere:
+
+- Usuario autenticado.
+- Rol `Customer`.
+
+Se utiliza en los endpoints `/api/v1/pets`.
+
+### Autorización a nivel de recurso
+
+La autorización de mascotas también se valida por propiedad.
+
+El `OwnerId` se obtiene desde el claim `sub` del JWT a través de
+`ICurrentUser`.
+
+Las consultas al repositorio utilizan simultáneamente:
+
+- `PetId`
+- `OwnerId`
+
+Una mascota perteneciente a otro usuario se responde como
+`404 Not Found` y no como `403 Forbidden`, evitando revelar la
+existencia del recurso.
+
 ## 8. Autorización por propiedad
 
 La autenticación responde **quién es el usuario**; la autorización por propiedad responde **si puede operar sobre ese recurso concreto**.

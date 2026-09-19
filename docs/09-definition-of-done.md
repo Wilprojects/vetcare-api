@@ -14,128 +14,128 @@ Una funcionalidad se considera terminada cuando cumple todos los puntos aplicabl
 ### 2.1 Diseño y alcance
 
 ```text
-[ ] Está asociada a un requisito identificado.
-[ ] Sus reglas de negocio están documentadas.
-[ ] Su contrato HTTP está definido.
-[ ] No agrega funcionalidades fuera del alcance sin documentarlas.
+[x] Está asociada a un requisito identificado.
+[x] Sus reglas de negocio están documentadas.
+[x] Su contrato HTTP está definido.
+[x] No agrega funcionalidades fuera del alcance sin documentarlas.
 ```
 
 ### 2.2 Arquitectura
 
 ```text
-[ ] El endpoint se encuentra en VetCare.Api.
-[ ] La lógica de negocio se encuentra en VetCare.Application.
-[ ] Las entidades y enums corresponden a VetCare.Domain.
-[ ] La persistencia y servicios técnicos corresponden a VetCare.Infrastructure.
-[ ] Las dependencias respetan la dirección de la arquitectura.
-[ ] No hay consultas directas al DbContext dentro del endpoint.
+[x] El endpoint se encuentra en VetCare.Api.
+[x] La lógica de negocio se encuentra en VetCare.Application.
+[x] Las entidades y enums corresponden a VetCare.Domain.
+[x] La persistencia y servicios técnicos corresponden a VetCare.Infrastructure.
+[x] Las dependencias respetan la dirección de la arquitectura.
+[x] No hay consultas directas al DbContext dentro del endpoint.
 ```
 
 ### 2.3 Código
 
 ```text
-[ ] Compila sin errores.
-[ ] No introduce advertencias evitables.
-[ ] Nullable reference types están respetados.
-[ ] Usa nombres claros y consistentes.
-[ ] Las operaciones de entrada/salida son asíncronas.
-[ ] Acepta CancellationToken cuando corresponde.
-[ ] No contiene código muerto o comentado innecesario.
-[ ] No duplica lógica existente.
+[x] Compila sin errores.
+[x] No introduce advertencias evitables.
+[x] Nullable reference types están respetados.
+[x] Usa nombres claros y consistentes.
+[x] Las operaciones de entrada/salida son asíncronas.
+[x] Acepta CancellationToken cuando corresponde.
+[x] No contiene código muerto o comentado innecesario.
+[x] No duplica lógica existente.
 ```
 
 ### 2.4 Inyección de dependencias
 
 ```text
-[ ] La lógica se expone mediante una interfaz cuando corresponde.
-[ ] La implementación está registrada en DI.
-[ ] El ciclo de vida elegido es adecuado.
-[ ] El servicio puede probarse de forma aislada.
+[x] La lógica se expone mediante una interfaz cuando corresponde.
+[x] La implementación está registrada en DI.
+[x] El ciclo de vida elegido es adecuado.
+[x] El servicio puede probarse de forma aislada.
 ```
 
 ### 2.5 API y DTOs
 
 ```text
-[ ] Usa DTOs de entrada y salida.
-[ ] No devuelve entidades de EF Core directamente.
-[ ] Realiza binding correctamente.
-[ ] Devuelve el código HTTP adecuado.
-[ ] Usa TypedResults o resultados claramente definidos.
-[ ] El recurso creado devuelve 201 y Location cuando corresponde.
-[ ] Una operación sin cuerpo devuelve 204 cuando corresponde.
+[x] Usa DTOs de entrada y salida.
+[x] No devuelve entidades de EF Core directamente.
+[x] Realiza binding correctamente.
+[x] Devuelve el código HTTP adecuado.
+[x] Usa TypedResults o resultados claramente definidos.
+[x] El recurso creado devuelve 201 y Location cuando corresponde.
+[x] Una operación sin cuerpo devuelve 204 cuando corresponde.
 ```
 
 ### 2.6 Validación y errores
 
 ```text
-[ ] Valida el formato y campos obligatorios.
-[ ] Valida reglas de negocio en el servicio.
-[ ] Los errores usan Problem Details.
-[ ] El error incluye traceId y errorCode cuando corresponde.
-[ ] No expone stack trace, SQL ni detalles internos.
-[ ] Los conflictos de negocio usan 409 cuando corresponde.
+[x] Valida el formato y campos obligatorios.
+[x] Valida reglas de negocio en el servicio.
+[x] Los errores usan Problem Details.
+[x] El error incluye traceId y errorCode cuando corresponde.
+[x] No expone stack trace, SQL ni detalles internos.
+[x] Los conflictos de negocio usan 409 cuando corresponde.
 ```
 
 ### 2.7 Seguridad
 
 ```text
-[ ] Aplica autenticación cuando corresponde.
-[ ] Aplica rol o política cuando corresponde.
-[ ] Verifica la propiedad del recurso.
-[ ] No confía en OwnerId enviado por el cliente.
-[ ] Un recurso ajeno no revela su existencia.
-[ ] No registra contraseñas, tokens ni secretos.
+[x] Aplica autenticación cuando corresponde.
+[x] Aplica rol o política cuando corresponde.
+[x] Verifica la propiedad del recurso.
+[x] No confía en OwnerId enviado por el cliente.
+[x] Un recurso ajeno no revela su existencia.
+[x] No registra contraseñas, tokens ni secretos.
 ```
 
 ### 2.8 Persistencia
 
 ```text
-[ ] La configuración EF Core está definida.
-[ ] Las relaciones y restricciones son correctas.
-[ ] Las consultas de lectura usan AsNoTracking cuando corresponde.
-[ ] La consulta evita problemas N+1.
-[ ] La paginación tiene un orden estable.
-[ ] Existe una migración cuando cambia el esquema.
-[ ] La migración fue aplicada y probada.
+[x] La configuración EF Core está definida.
+[x] Las relaciones y restricciones son correctas.
+[x] Las consultas de lectura usan AsNoTracking cuando corresponde.
+[x] La consulta evita problemas N+1.
+[x] La paginación tiene un orden estable.
+[x] Existe una migración cuando cambia el esquema.
+[x] La migración fue aplicada y probada.
 ```
 
 ### 2.9 Logging
 
 ```text
-[ ] Registra los eventos importantes con ILogger<T>.
-[ ] Usa logging estructurado con placeholders.
-[ ] Emplea el nivel adecuado.
-[ ] No concatena información sensible.
-[ ] Los identificadores necesarios son trazables.
+[x] Registra los eventos importantes con ILogger<T>.
+[x] Usa logging estructurado con placeholders.
+[x] Emplea el nivel adecuado.
+[x] No concatena información sensible.
+[x] Los identificadores necesarios son trazables.
 ```
 
 ### 2.10 Documentación
 
 ```text
-[ ] El endpoint aparece en OpenAPI.
-[ ] Swagger muestra request, response y códigos relevantes.
-[ ] Existe una petición equivalente en un archivo .http.
-[ ] La documentación funcional se actualizó si hubo cambios.
-[ ] Los ejemplos no contienen secretos reales.
+[x] El endpoint aparece en OpenAPI.
+[x] Swagger muestra request, response y códigos relevantes.
+[x] Existe una petición equivalente en un archivo .http.
+[x] La documentación funcional se actualizó si hubo cambios.
+[x] Los ejemplos no contienen secretos reales.
 ```
 
 ### 2.11 Pruebas
 
 ```text
-[ ] Tiene prueba unitaria cuando contiene reglas de negocio.
-[ ] Tiene prueba de integración del flujo HTTP principal.
-[ ] Incluye al menos un caso negativo relevante.
-[ ] Las pruebas son deterministas e independientes.
-[ ] Todas las pruebas pasan con dotnet test.
+[x] Tiene prueba unitaria cuando contiene reglas de negocio.
+[x] Tiene prueba de integración del flujo HTTP principal.
+[x] Incluye al menos un caso negativo relevante.
+[x] Las pruebas son deterministas e independientes.
+[x] Todas las pruebas pasan con dotnet test.
 ```
 
 ### 2.12 Control de versiones
 
 ```text
-[ ] Los cambios están incluidos en commits claros.
-[ ] No se versionan bin, obj, secretos ni archivos locales.
-[ ] El nombre del commit describe la funcionalidad.
-[ ] El repositorio puede clonarse y compilarse limpiamente.
+[x] Los cambios están incluidos en commits claros.
+[x] No se versionan bin, obj, secretos ni archivos locales.
+[x] El nombre del commit describe la funcionalidad.
+[x] El repositorio puede clonarse y compilarse limpiamente.
 ```
 
 ## 3. Definición de terminado por módulo
@@ -143,16 +143,16 @@ Una funcionalidad se considera terminada cuando cumple todos los puntos aplicabl
 ### 3.1 Autenticación
 
 ```text
-[ ] Registro crea usuarios Customer.
-[ ] Registro rechaza correos duplicados.
-[ ] Identity aplica la política de contraseña.
-[ ] Login válido emite JWT.
-[ ] Login inválido devuelve 401.
-[ ] JWT incluye claims y expiración correctos.
-[ ] /auth/me devuelve el usuario autenticado.
-[ ] Customer no accede a rutas Admin.
-[ ] Swagger permite enviar Bearer token.
-[ ] Existen pruebas unitarias/integración aplicables.
+[x] Registro crea usuarios Customer.
+[x] Registro rechaza correos duplicados.
+[x] Identity aplica la política de contraseña.
+[x] Login válido emite JWT.
+[x] Login inválido devuelve 401.
+[x] JWT incluye claims y expiración correctos.
+[x] /auth/me devuelve el usuario autenticado.
+[x] Customer no accede a rutas Admin.
+[x] Swagger permite enviar Bearer token.
+[x] Existen pruebas unitarias/integración aplicables.
 ```
 
 ### 3.2 Mascotas
@@ -173,14 +173,14 @@ Una funcionalidad se considera terminada cuando cumple todos los puntos aplicabl
 ### 3.3 Servicios veterinarios
 
 ```text
-[ ] Catálogo público muestra solo activos.
-[ ] Admin puede consultar activos e inactivos.
-[ ] POST, PUT y DELETE lógico requieren Admin.
-[ ] Nombre duplicado devuelve 409.
-[ ] Precio y duración se validan.
-[ ] Desactivar no altera citas históricas.
-[ ] Paginación, filtros y ordenamiento funcionan.
-[ ] Pruebas unitarias e integración pasan.
+[x] Catálogo público muestra solo activos.
+[x] Admin puede consultar activos e inactivos.
+[x] POST, PUT y DELETE lógico requieren Admin.
+[x] Nombre duplicado devuelve 409.
+[x] Precio y duración se validan.
+[x] Desactivar no altera citas históricas.
+[x] Paginación, filtros y ordenamiento funcionan.
+[x] Pruebas unitarias e integración pasan.
 ```
 
 ### 3.4 Citas

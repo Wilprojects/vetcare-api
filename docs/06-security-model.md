@@ -148,6 +148,21 @@ Una mascota perteneciente a otro usuario se responde como
 `404 Not Found` y no como `403 Forbidden`, evitando revelar la
 existencia del recurso.
 
+### Servicios veterinarios
+
+La consulta del catálogo de servicios activos es pública y no requiere
+JWT.
+
+Las siguientes operaciones requieren la política `AdminOnly`:
+
+- Crear servicio veterinario.
+- Actualizar servicio veterinario.
+- Desactivar servicio veterinario.
+- Consultar el catálogo administrativo.
+
+Un usuario autenticado con rol `Customer` recibe `403 Forbidden` al
+intentar ejecutar operaciones administrativas.
+
 ## 8. Autorización por propiedad
 
 La autenticación responde **quién es el usuario**; la autorización por propiedad responde **si puede operar sobre ese recurso concreto**.

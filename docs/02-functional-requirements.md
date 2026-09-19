@@ -75,6 +75,29 @@ Las mascotas pertenecientes a otros usuarios se responden como
 | `RF-SVC-07` | Un usuario sin rol `Admin` no debe administrar servicios. | Must | El acceso devuelve `403 Forbidden`. |
 | `RF-SVC-08` | Los servicios deben poder consultarse con paginación, filtros y ordenamiento. | Must | La respuesta contiene metadatos y usa campos permitidos. |
 
+### Estado de implementación
+
+La gestión de servicios veterinarios se encuentra implementada.
+
+Los usuarios públicos pueden:
+
+- Consultar servicios veterinarios activos.
+- Consultar el detalle de un servicio activo.
+- Buscar servicios por nombre o descripción.
+- Utilizar paginación y ordenamiento.
+
+El usuario con rol `Admin` puede:
+
+- Consultar servicios activos e inactivos.
+- Crear servicios veterinarios.
+- Actualizar servicios activos.
+- Desactivar servicios mediante eliminación lógica.
+
+Los nombres de servicios son únicos.
+
+Los servicios inactivos no se muestran en el catálogo público y no
+pueden modificarse.
+
 ## 6. Requisitos funcionales de citas
 
 | ID | Requisito | Prioridad | Criterio de aceptación resumido |

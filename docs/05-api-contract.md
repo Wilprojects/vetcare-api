@@ -291,14 +291,43 @@ Errores relevantes:
 
 ## 7. Endpoints de servicios veterinarios
 
-| Método | Ruta | Acceso | Resultado principal |
+### Endpoints públicos
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/v1/veterinary-services` | Lista servicios activos |
+| GET | `/api/v1/veterinary-services/{id}` | Consulta un servicio activo |
+
+### Endpoints administrativos
+
+| Método | Endpoint | Autorización | Descripción |
 |---|---|---|---|
-| `GET` | `/api/v1/veterinary-services` | Público | `200 OK` |
-| `GET` | `/api/v1/veterinary-services/{id}` | Público | `200 OK` |
-| `POST` | `/api/v1/veterinary-services` | Admin | `201 Created` |
-| `PUT` | `/api/v1/veterinary-services/{id}` | Admin | `200 OK` |
-| `DELETE` | `/api/v1/veterinary-services/{id}` | Admin | `204 No Content` |
-| `GET` | `/api/v1/admin/veterinary-services` | Admin | `200 OK` |
+| GET | `/api/v1/admin/veterinary-services` | Admin | Lista activos e inactivos |
+| POST | `/api/v1/veterinary-services` | Admin | Crea un servicio |
+| PUT | `/api/v1/veterinary-services/{id}` | Admin | Actualiza un servicio |
+| DELETE | `/api/v1/veterinary-services/{id}` | Admin | Desactiva un servicio |
+
+### Parámetros de listado
+
+- `pageNumber`: default `1`.
+- `pageSize`: default `10`, máximo `100`.
+- `search`: busca por nombre o descripción.
+- `sortBy`: `name`, `price`, `duration`, `createdAt`.
+- `sortDirection`: `asc` o `desc`.
+
+El endpoint administrativo también acepta:
+
+- `includeInactive`: default `true`.
+
+### Crear servicio
+
+```json
+{
+  "name": "Ecografía veterinaria",
+  "description": "Evaluación mediante ecografía.",
+  "durationMinutes": 45,
+  "price": 120.00
+}
 
 Este recurso también cumple el CRUD completo requerido. `DELETE` realiza una desactivación lógica.
 

@@ -122,3 +122,80 @@ Authorization: Bearer {{token}}
 
 DELETE {{baseUrl}}/api/v1/pets/{{petId}}
 Authorization: Bearer {{token}}
+
+
+### =========================================================
+### VETERINARY SERVICES - PUBLIC
+### =========================================================
+
+@veterinaryServiceId = REPLACE_WITH_SERVICE_ID
+
+
+### Get active veterinary services
+
+GET {{baseUrl}}/api/v1/veterinary-services
+Accept: application/json
+
+
+### Get active veterinary services with pagination
+
+GET {{baseUrl}}/api/v1/veterinary-services?pageNumber=1&pageSize=10&sortBy=name&sortDirection=asc
+Accept: application/json
+
+
+### Search veterinary services
+
+GET {{baseUrl}}/api/v1/veterinary-services?search=consulta
+Accept: application/json
+
+
+### Get veterinary service by id
+
+GET {{baseUrl}}/api/v1/veterinary-services/{{veterinaryServiceId}}
+Accept: application/json
+
+
+### =========================================================
+### VETERINARY SERVICES - ADMIN
+### =========================================================
+
+
+### Get all veterinary services as admin
+
+GET {{baseUrl}}/api/v1/admin/veterinary-services?pageNumber=1&pageSize=10&includeInactive=true
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Create veterinary service
+
+POST {{baseUrl}}/api/v1/veterinary-services
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Ecografía veterinaria",
+  "description": "Evaluación mediante ecografía para diagnóstico veterinario.",
+  "durationMinutes": 45,
+  "price": 120.00
+}
+
+
+### Update veterinary service
+
+PUT {{baseUrl}}/api/v1/veterinary-services/{{veterinaryServiceId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Ecografía veterinaria",
+  "description": "Evaluación ecográfica especializada para mascotas.",
+  "durationMinutes": 60,
+  "price": 140.00
+}
+
+
+### Deactivate veterinary service
+
+DELETE {{baseUrl}}/api/v1/veterinary-services/{{veterinaryServiceId}}
+Authorization: Bearer {{token}}

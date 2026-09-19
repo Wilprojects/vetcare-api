@@ -20,6 +20,8 @@ public static class EndpointExtensions
 
         app.MapPetEndpoints();
 
+        app.MapVeterinaryServiceEndpoints();
+
         return app;
     }
 }

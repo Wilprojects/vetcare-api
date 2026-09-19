@@ -164,6 +164,15 @@ Representa un servicio ofrecido por la clínica.
 | `CreatedAtUtc` | `DateTime` | `datetime2` | Sí | Fecha UTC de creación. |
 | `UpdatedAtUtc` | `DateTime?` | `datetime2` | No | Última modificación UTC. |
 
+| Método | Endpoint | Acceso |
+|---|---|---|
+| GET | `/api/v1/veterinary-services` | Público |
+| GET | `/api/v1/veterinary-services/{id}` | Público |
+| GET | `/api/v1/admin/veterinary-services` | Admin |
+| POST | `/api/v1/veterinary-services` | Admin |
+| PUT | `/api/v1/veterinary-services/{id}` | Admin |
+| DELETE | `/api/v1/veterinary-services/{id}` | Admin |
+
 ### 6.1 Relación
 
 ```text

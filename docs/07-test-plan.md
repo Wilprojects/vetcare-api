@@ -62,6 +62,17 @@ Casos cubiertos:
 - Una mascota sin citas futuras puede desactivarse correctamente.
 - `pageSize` mayor a 100 produce error de validación.
 
+### VeterinaryServiceService
+
+Casos cubiertos:
+
+- Creación correcta de un servicio activo.
+- Rechazo de nombres duplicados.
+- Un servicio inactivo no es visible mediante consulta pública.
+- Un servicio inactivo no puede modificarse.
+- La desactivación lógica modifica `IsActive`.
+- `pageSize` mayor que 100 produce error de validación.
+
 ### 3.2 Pruebas de integración
 
 Inician VetCare con `WebApplicationFactory<Program>` y envían peticiones mediante `HttpClient`.

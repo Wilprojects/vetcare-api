@@ -73,6 +73,21 @@ Casos cubiertos:
 - La desactivación lógica modifica `IsActive`.
 - `pageSize` mayor que 100 produce error de validación.
 
+### AppointmentService
+
+Casos cubiertos:
+
+- Creación de cita en estado `Pending`.
+- Copia del precio actual del servicio.
+- Cálculo de `ScheduledEndUtc`.
+- Rechazo de mascota ajena.
+- Rechazo de mascota inactiva.
+- Rechazo de servicio inactivo.
+- Rechazo de horarios solapados.
+- Cancelación de citas.
+- Confirmación administrativa.
+- Rechazo de transiciones de estado inválidas.
+
 ### 3.2 Pruebas de integración
 
 Inician VetCare con `WebApplicationFactory<Program>` y envían peticiones mediante `HttpClient`.

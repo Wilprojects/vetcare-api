@@ -7,7 +7,7 @@ servicios y citas veterinarias.
 
 En desarrollo.
 
-Fase actual: CRUD de mascotas completado.
+Fase actual: gestión de citas veterinarias completada.
 
 ### Aplicar migraciones
 
@@ -94,6 +94,18 @@ VetCare utiliza:
 | DELETE | `/api/v1/pets/{id}` |
 
 Los endpoints requieren autenticación JWT y rol `Customer`.
+
+### Citas
+
+| Método | Endpoint | Acceso |
+|---|---|---|
+| GET | `/api/v1/appointments` | Customer |
+| GET | `/api/v1/appointments/{id}` | Customer |
+| POST | `/api/v1/appointments` | Customer |
+| PUT | `/api/v1/appointments/{id}` | Customer |
+| PATCH | `/api/v1/appointments/{id}/cancel` | Customer |
+| GET | `/api/v1/admin/appointments` | Admin |
+| PATCH | `/api/v1/admin/appointments/{id}/status` | Admin |
 
 ## Documentación
 

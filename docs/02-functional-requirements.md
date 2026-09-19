@@ -117,6 +117,30 @@ pueden modificarse.
 | `RF-APT-13` | El listado debe permitir filtrar por mascota, estado y rango de fechas. | Must | Los filtros se combinan correctamente. |
 | `RF-APT-14` | Una cita completada o cancelada debe conservarse como historial. | Must | No existe eliminación física de citas. |
 
+La gestión de citas veterinarias se encuentra implementada.
+
+El usuario `Customer` puede:
+
+- Listar sus propias citas.
+- Consultar una cita propia.
+- Crear citas para sus mascotas activas.
+- Reprogramar citas pendientes o confirmadas.
+- Cancelar citas pendientes o confirmadas.
+
+El usuario `Admin` puede:
+
+- Consultar todas las citas.
+- Confirmar citas pendientes.
+- Completar citas confirmadas.
+- Cancelar citas pendientes o confirmadas.
+
+La duración se obtiene automáticamente del servicio veterinario.
+
+El precio del servicio se copia en la cita al momento de crearla para
+mantener el valor histórico.
+
+Las citas activas no pueden solaparse.
+
 ## 7. Requisitos funcionales de operación y documentación
 
 | ID | Requisito | Prioridad | Criterio de aceptación resumido |

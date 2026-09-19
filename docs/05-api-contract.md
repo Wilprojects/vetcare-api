@@ -420,15 +420,36 @@ Permite consultar activos e inactivos.
 
 ## 8. Endpoints de citas
 
-| Método | Ruta | Acceso | Resultado principal |
-|---|---|---|---|
-| `GET` | `/api/v1/appointments` | Customer | `200 OK` |
-| `GET` | `/api/v1/appointments/{id}` | Propietario o Admin | `200 OK` |
-| `POST` | `/api/v1/appointments` | Customer | `201 Created` |
-| `PUT` | `/api/v1/appointments/{id}` | Propietario | `200 OK` |
-| `PATCH` | `/api/v1/appointments/{id}/cancel` | Propietario o Admin | `204 No Content` |
-| `GET` | `/api/v1/admin/appointments` | Admin | `200 OK` |
-| `PATCH` | `/api/v1/admin/appointments/{id}/status` | Admin | `200 OK` |
+### Customer
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/v1/appointments` | Lista las citas propias |
+| GET | `/api/v1/appointments/{id}` | Consulta una cita propia |
+| POST | `/api/v1/appointments` | Crea una cita |
+| PUT | `/api/v1/appointments/{id}` | Reprograma una cita |
+| PATCH | `/api/v1/appointments/{id}/cancel` | Cancela una cita |
+
+Todos requieren rol `Customer`.
+
+### Admin
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/v1/admin/appointments` | Lista todas las citas |
+| PATCH | `/api/v1/admin/appointments/{id}/status` | Cambia el estado |
+
+Los endpoints administrativos requieren `AdminOnly`.
+
+### Crear cita
+
+```json
+{
+  "petId": "guid",
+  "veterinaryServiceId": "guid",
+  "scheduledStartUtc": "2026-09-25T15:00:00Z",
+  "reason": "Control general"
+}
 
 ### 8.1 Listar citas del cliente
 

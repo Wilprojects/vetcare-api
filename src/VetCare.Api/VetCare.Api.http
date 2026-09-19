@@ -199,3 +199,116 @@ Authorization: Bearer {{token}}
 
 DELETE {{baseUrl}}/api/v1/veterinary-services/{{veterinaryServiceId}}
 Authorization: Bearer {{token}}
+
+
+### =========================================================
+### APPOINTMENTS - CUSTOMER
+### =========================================================
+
+@appointmentId = REPLACE_WITH_APPOINTMENT_ID
+@petId = REPLACE_WITH_PET_ID
+@veterinaryServiceId = REPLACE_WITH_SERVICE_ID
+
+
+### Get my appointments
+
+GET {{baseUrl}}/api/v1/appointments
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Get my appointments filtered
+
+GET {{baseUrl}}/api/v1/appointments?pageNumber=1&pageSize=10&status=Pending&sortBy=scheduledStart&sortDirection=asc
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Get appointment by id
+
+GET {{baseUrl}}/api/v1/appointments/{{appointmentId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Create appointment
+
+POST {{baseUrl}}/api/v1/appointments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "petId": "{{petId}}",
+  "veterinaryServiceId": "{{veterinaryServiceId}}",
+  "scheduledStartUtc": "2026-09-25T15:00:00Z",
+  "reason": "Control general"
+}
+
+
+### Reschedule appointment
+
+PUT {{baseUrl}}/api/v1/appointments/{{appointmentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "scheduledStartUtc": "2026-09-26T15:00:00Z",
+  "reason": "Reprogramación del control"
+}
+
+
+### Cancel appointment
+
+PATCH {{baseUrl}}/api/v1/appointments/{{appointmentId}}/cancel
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cancellationReason": "No podré asistir en esa fecha."
+}
+
+
+### =========================================================
+### APPOINTMENTS - ADMIN
+### =========================================================
+
+
+### Get all appointments
+
+GET {{baseUrl}}/api/v1/admin/appointments?pageNumber=1&pageSize=10&sortBy=scheduledStart&sortDirection=asc
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### Confirm appointment
+
+PATCH {{baseUrl}}/api/v1/admin/appointments/{{appointmentId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "Confirmed"
+}
+
+
+### Complete appointment
+
+PATCH {{baseUrl}}/api/v1/admin/appointments/{{appointmentId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "Completed"
+}
+
+
+### Cancel appointment as admin
+
+PATCH {{baseUrl}}/api/v1/admin/appointments/{{appointmentId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "Cancelled",
+  "cancellationReason": "Cancelación administrativa."
+}

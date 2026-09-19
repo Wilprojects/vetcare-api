@@ -5,6 +5,7 @@ using Microsoft.OpenApi;
 using VetCare.Api.ExceptionHandling;
 using VetCare.Api.OpenApi;
 using VetCare.Api.Security;
+using VetCare.Application.Appointments;
 using VetCare.Application.Common.Security;
 using VetCare.Application.Pets;
 using VetCare.Application.VeterinaryServices;
@@ -21,6 +22,7 @@ public static class ApiServiceExtensions
         services.AddValidation();
         services.AddScoped<IPetService, PetService>();
         services.AddScoped<IVeterinaryServiceService, VeterinaryServiceService>();
+        services.AddScoped<IAppointmentService, AppointmentService>();
         AddJsonConfiguration(services);
         AddCorsConfiguration(services, configuration);
         AddOpenApiConfiguration(services);

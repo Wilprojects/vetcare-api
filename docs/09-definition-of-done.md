@@ -186,19 +186,19 @@ Una funcionalidad se considera terminada cuando cumple todos los puntos aplicabl
 ### 3.4 Citas
 
 ```text
-[ ] Customer crea cita para mascota propia.
-[ ] Servicio y mascota deben estar activos.
-[ ] Inicio debe estar en el futuro.
-[ ] Fin se calcula con la duración.
-[ ] Precio se copia como valor histórico.
-[ ] Se detectan superposiciones.
-[ ] Customer lista solo sus citas.
-[ ] Reprogramación respeta estados y conflictos.
-[ ] Cancelación respeta propiedad y estados.
-[ ] Admin lista todas las citas.
-[ ] Admin confirma y completa mediante transiciones válidas.
-[ ] Citas completadas/canceladas conservan historial.
-[ ] Pruebas unitarias e integración pasan.
+[x] Customer crea cita para mascota propia.
+[x] Servicio y mascota deben estar activos.
+[x] Inicio debe estar en el futuro.
+[x] Fin se calcula con la duración.
+[x] Precio se copia como valor histórico.
+[x] Se detectan superposiciones.
+[x] Customer lista solo sus citas.
+[x] Reprogramación respeta estados y conflictos.
+[x] Cancelación respeta propiedad y estados.
+[x] Admin lista todas las citas.
+[x] Admin confirma y completa mediante transiciones válidas.
+[x] Citas completadas/canceladas conservan historial.
+[x] Pruebas unitarias e integración pasan.
 ```
 
 ## 4. Definición de terminado de la base de datos

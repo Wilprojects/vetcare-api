@@ -22,6 +22,8 @@ public static class EndpointExtensions
 
         app.MapVeterinaryServiceEndpoints();
 
+        app.MapAppointmentEndpoints();
+
         return app;
     }
 }

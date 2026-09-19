@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using VetCare.Application.Appointments.Repositories;
 using VetCare.Application.Authentication;
 using VetCare.Application.Common.Persistence;
 using VetCare.Application.Pets.Repositories;
@@ -103,6 +104,8 @@ public static class DependencyInjection
         services.AddScoped<IPetRepository, PetRepository>();
 
         services.AddScoped<IVeterinaryServiceRepository, VeterinaryServiceRepository>();
+
+        services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
         services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<VetCareDbContext>());
 

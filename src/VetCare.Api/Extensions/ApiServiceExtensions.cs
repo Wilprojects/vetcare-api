@@ -7,6 +7,7 @@ using VetCare.Api.OpenApi;
 using VetCare.Api.Security;
 using VetCare.Application.Common.Security;
 using VetCare.Application.Pets;
+using VetCare.Application.VeterinaryServices;
 using VetCare.Infrastructure.Persistence;
 
 namespace VetCare.Api.Extensions;
@@ -19,6 +20,7 @@ public static class ApiServiceExtensions
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddValidation();
         services.AddScoped<IPetService, PetService>();
+        services.AddScoped<IVeterinaryServiceService, VeterinaryServiceService>();
         AddJsonConfiguration(services);
         AddCorsConfiguration(services, configuration);
         AddOpenApiConfiguration(services);

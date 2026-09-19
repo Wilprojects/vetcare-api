@@ -78,6 +78,10 @@ Este documento define las reglas que deben cumplirse independientemente del endp
 | `RN-SVC-10` | La eliminación de un servicio es lógica: `IsActive = false`. |
 | `RN-SVC-11` | Desactivar un servicio no modifica ni elimina citas históricas. |
 | `RN-SVC-12` | Las consultas públicas solo muestran servicios activos. |
+| `RN-SVC-13` | Solo los servicios activos se muestran en el catálogo público. |
+| `RN-SVC-14` | Un servicio inactivo no puede modificarse. |
+| `RN-SVC-15` | Los servicios desactivados permanecen disponibles para conservar la integridad del historial de citas. |
+| `RN-SVC-16` | El listado público puede ser consultado sin autenticación. |
 
 ## 6. Reglas de citas
 

@@ -7,10 +7,12 @@ using Microsoft.IdentityModel.Tokens;
 using VetCare.Application.Authentication;
 using VetCare.Application.Common.Persistence;
 using VetCare.Application.Pets.Repositories;
+using VetCare.Application.VeterinaryServices.Repositories;
 using VetCare.Infrastructure.Authentication;
 using VetCare.Infrastructure.Persistence;
 using VetCare.Infrastructure.Persistence.Repositories;
 using VetCare.Infrastructure.Persistence.Seed;
+
 
 namespace VetCare.Infrastructure;
 
@@ -99,6 +101,8 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
 
         services.AddScoped<IPetRepository, PetRepository>();
+
+        services.AddScoped<IVeterinaryServiceRepository, VeterinaryServiceRepository>();
 
         services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<VetCareDbContext>());
 
